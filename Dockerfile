@@ -21,7 +21,7 @@ RUN npm i -g opencode-ai@latest \
 
 # Configure opencode with gemini-auth plugin for all users
 RUN mkdir -p /etc/skel/.config/opencode /home/node/.config/opencode \
-    && echo '{"$schema":"https://opencode.ai/config.json","plugin":["opencode-gemini-auth"]}' \
+    && echo '{"$schema":"https://opencode.ai/config.json","plugin":["opencode-gemini-auth"],"model":"google/gemini-3.1-pro-preview"}' \
        > /etc/skel/.config/opencode/opencode.json \
     && cp /etc/skel/.config/opencode/opencode.json /home/node/.config/opencode/opencode.json \
     && chown -R node:node /home/node/.config
