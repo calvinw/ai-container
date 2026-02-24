@@ -10,7 +10,8 @@ RUN chmod +x /tmp/install_upterm.sh && /tmp/install_upterm.sh
 
 # Install Claude Code
 RUN curl -fsSL https://claude.ai/install.sh | bash \
-    && ln -sf /root/.local/bin/claude /usr/local/bin/claude
+    && cp -L /root/.local/bin/claude /usr/local/bin/claude \
+    && chmod 755 /usr/local/bin/claude
 
 # Install npm-based AI tools
 RUN npm i -g opencode-ai@latest \
