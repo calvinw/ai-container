@@ -17,7 +17,8 @@ RUN curl -fsSL https://claude.ai/install.sh | bash \
 RUN npm i -g opencode-ai@latest \
     && npm i -g opencode-gemini-auth \
     && npm i -g @openai/codex \
-    && npm i -g @google/gemini-cli
+    && npm i -g @google/gemini-cli \
+    && npm i -g @qwen-code/qwen-code
 
 # Configure opencode with gemini-auth plugin for all users
 COPY config/opencode.json /etc/skel/.config/opencode/opencode.json
@@ -32,4 +33,5 @@ RUN echo "=== Verifying installed tools ===" \
     && opencode --version \
     && codex --version \
     && gemini --version \
+    && qwen --version \
     && echo "=== All tools verified ==="
