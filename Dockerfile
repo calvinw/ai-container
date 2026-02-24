@@ -1,4 +1,8 @@
-FROM mcr.microsoft.com/devcontainers/universal:2
+FROM mcr.microsoft.com/devcontainers/javascript-node:22
+
+# Install Python
+RUN apt-get update && apt-get install -y python3 python3-pip python3-venv \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install upterm
 COPY scripts/install_upterm.sh /tmp/install_upterm.sh
