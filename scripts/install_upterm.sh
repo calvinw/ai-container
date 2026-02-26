@@ -21,8 +21,8 @@ else
   TMP=$(mktemp -d)
   curl -fsSL "https://github.com/owenthereal/upterm/releases/latest/download/${TARBALL}" -o "$TMP/upterm.tar.gz"
   tar -xzf "$TMP/upterm.tar.gz" -C "$TMP"
-  sudo mv "$TMP/upterm" /usr/local/bin/upterm
-  sudo chmod +x /usr/local/bin/upterm
+  mv "$TMP/upterm" /usr/local/bin/upterm
+  chmod +x /usr/local/bin/upterm
   rm -rf "$TMP"
   echo "✓ upterm installed."
 fi
