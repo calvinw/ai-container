@@ -2,7 +2,7 @@ FROM node:22-slim
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
-    curl git \
+    curl git vim \
     python3 python3-pip python3-venv \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
@@ -20,7 +20,8 @@ RUN npm i -g opencode-ai@latest \
     && npm i -g opencode-gemini-auth \
     && npm i -g @openai/codex \
     && npm i -g @google/gemini-cli \
-    && npm i -g @qwen-code/qwen-code
+    && npm i -g @qwen-code/qwen-code \
+    && npm i -g @charmland/crush
 
 # Configure opencode with gemini-auth plugin for all users
 COPY config/opencode.json /etc/skel/.config/opencode/opencode.json
@@ -36,4 +37,5 @@ RUN echo "=== Verifying installed tools ===" \
     && codex --version \
     && gemini --version \
     && qwen --version \
+    && crush --version \
     && echo "=== All tools verified ==="
