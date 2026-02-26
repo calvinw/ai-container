@@ -21,7 +21,8 @@ RUN npm i -g opencode-ai@latest \
     && npm i -g @openai/codex \
     && npm i -g @google/gemini-cli \
     && npm i -g @qwen-code/qwen-code \
-    && npm i -g @charmland/crush
+    && npm i -g @charmland/crush \
+    && npm i -g @github/copilot
 
 # Configure opencode with gemini-auth plugin for all users
 COPY config/opencode.json /etc/skel/.config/opencode/opencode.json
@@ -38,4 +39,5 @@ RUN echo "=== Verifying installed tools ===" \
     && gemini --version \
     && qwen --version \
     && crush --version \
+    && copilot --version \
     && echo "=== All tools verified ==="
