@@ -30,6 +30,9 @@ RUN mkdir -p /home/node/.config/opencode \
     && cp /etc/skel/.config/opencode/opencode.json /home/node/.config/opencode/opencode.json \
     && chown -R node:node /home/node/.config
 
+# Set simple prompt for all terminals
+RUN echo 'PS1="# "' >> /root/.bashrc
+
 # Verify all tools are installed
 RUN echo "=== Verifying installed tools ===" \
     && upterm version \
