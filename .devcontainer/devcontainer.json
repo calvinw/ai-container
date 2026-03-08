@@ -4,8 +4,12 @@
   "postCreateCommand": "mkdir -p ~/.ssh && ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -N '' 2>/dev/null || true && mkdir -p ~/.config/opencode && cp /etc/skel/.config/opencode/opencode.json ~/.config/opencode/opencode.json",
   "postAttachCommand": "echo '' && echo '============================================' && echo '  Once the Codespace is running:' && echo '' && echo '  Start dev web servers:' && echo '    # ./start_servers.sh' && echo '' && echo '  Start Claude Code:' && echo '    # claude' && echo '' && echo '  Start Copilot CLI:' && echo '    # copilot' && echo '' && echo '============================================' && echo ''",
   "customizations": {
+    "codespaces": {
+      "openFiles": []
+    },
     "vscode": {
       "settings": {
+        "chat.agent.enabled": false,
         "terminal.integrated.copyOnSelection": true,
         "terminal.integrated.rightClickBehavior": "paste"
       }
