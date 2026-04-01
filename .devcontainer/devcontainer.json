@@ -3,7 +3,8 @@
   "image": "ghcr.io/calvinw/ai-course-devcontainer:latest",
   "postCreateCommand": "bash .devcontainer/post-create.sh",
   "containerEnv": {
-    "CLAUDE_CODE_DISABLE_VSCODE_EXTENSION": "1"
+    "CLAUDE_CODE_DISABLE_VSCODE_EXTENSION": "1",
+    "IS_SANDBOX": "1"
   },
   "customizations": {
     "codespaces": {

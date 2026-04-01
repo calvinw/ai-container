@@ -1,0 +1,2 @@
+#!/bin/bash
+crush --yolo
