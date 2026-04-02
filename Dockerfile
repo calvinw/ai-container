@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y \
     lsof procps iproute2 jq \
     pspg bat fzf miller \
     bubblewrap ripgrep fd-find tree wget make \
-    pandoc poppler-utils \
+    poppler-utils \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install glow (markdown renderer) via Charm apt repo
@@ -26,6 +26,18 @@ RUN apt-get update && apt-get install -y gpg \
 
 # Install visidata (terminal data explorer) via pip
 RUN pip3 install visidata --break-system-packages
+
+# Install Python data science packages
+RUN pip3 install jupyter numpy pandas matplotlib seaborn requests --break-system-packages
+
+# Install Quarto
+RUN QUARTO_VERSION=$(curl -s https://api.github.com/repos/quarto-dev/quarto-cli/releases/latest | jq -r '.tag_name' | sed 's/^v//') \
+    && curl -LO "https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-amd64.deb" \
+    && dpkg -i "quarto-${QUARTO_VERSION}-linux-amd64.deb" \
+    && rm "quarto-${QUARTO_VERSION}-linux-amd64.deb"
+
+# Install TinyTeX via Quarto
+RUN quarto install tinytex --no-prompt
 
 # Install upterm
 COPY scripts/install_upterm.sh /tmp/install_upterm.sh
@@ -66,4 +78,5 @@ RUN echo "=== Verifying installed tools ===" \
     && copilot --version \
     && pi --version \
     && dolt version \
+    && quarto check \
     && echo "=== All tools verified ==="
