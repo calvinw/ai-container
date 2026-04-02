@@ -12,7 +12,7 @@
     },
     "vscode": {
       "extensions": [
-        "tomoki1207.pdf"
+        "analytic-signal.preview-pdf"
       ],
       "settings": {
         "extensions.allowed": {
