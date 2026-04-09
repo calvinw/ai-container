@@ -12,3 +12,7 @@ mkdir -p ~/.ssh && ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -N '' >/dev/null 2
 
 # Add ~/.local/bin to PATH so tools installed via pip/pipx are found in the shell.
 echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+
+# Symlink opencode global config to this workspace's config so opencode picks up project MCPs.
+mkdir -p ~/.config/opencode
+ln -sf "$WORKSPACE_DIR/.opencode/opencode.json" ~/.config/opencode/opencode.json
