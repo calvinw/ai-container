@@ -1,8 +1,0 @@
-{
-  "mcpServers": {
-    "dolt": {
-      "type": "sse",
-      "url": "https://bus-mgmt-databases.mcp.mathplosion.com/mcp-dolt-database/sse"
-    }
-  }
-}

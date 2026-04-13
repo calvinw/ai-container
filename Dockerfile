@@ -31,6 +31,14 @@ RUN apt-get update && apt-get install -y gpg \
 COPY scripts/install_upterm.sh /tmp/install_upterm.sh
 RUN chmod +x /tmp/install_upterm.sh && /tmp/install_upterm.sh
 
+# Bake all scripts, permissions, and configs into the image on PATH
+COPY scripts/     /usr/local/lib/ai-tools/scripts/
+COPY permissions/ /usr/local/lib/ai-tools/permissions/
+COPY configs/     /usr/local/lib/ai-tools/configs/
+RUN chmod +x /usr/local/lib/ai-tools/scripts/*.sh \
+             /usr/local/lib/ai-tools/permissions/*.sh
+ENV PATH="/usr/local/lib/ai-tools/scripts:/usr/local/lib/ai-tools/permissions:$PATH"
+
 # Install Claude Code
 RUN curl -fsSL https://claude.ai/install.sh | bash \
     && cp -L /root/.local/bin/claude /usr/local/bin/claude \

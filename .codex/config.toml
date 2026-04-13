@@ -10,10 +10,3 @@ enabled = true
 
 [plugins."github@openai-curated"]
 enabled = true
-
-[mcp_servers.dolt.tools.describe_table]
-approval_mode = "approve"
-
-[mcp_servers.dolt]
-command = "/usr/local/bin/supergateway"
-args = ["--sse", "https://bus-mgmt-databases.mcp.mathplosion.com/mcp-dolt-database/sse", "--logLevel", "none"]

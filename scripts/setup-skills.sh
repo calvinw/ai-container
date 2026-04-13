@@ -4,8 +4,7 @@ set -euo pipefail
 # Creates the .skillshare directory structure, installs the skillshare CLI,
 # and drops in a sample skill. Run this once when you want to start using skills.
 
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-WORKSPACE_DIR="$(cd -- "$SCRIPT_DIR/.." && pwd)"
+WORKSPACE_DIR="${WORKSPACE_DIR:-$PWD}"
 
 cd "$WORKSPACE_DIR"
 

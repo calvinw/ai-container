@@ -5,12 +5,5 @@
     "read": "allow",
     "write": "allow",
     "execute": "allow"
-  },
-  "mcp": {
-    "dolt": {
-      "type": "remote",
-      "url": "https://bus-mgmt-databases.mcp.mathplosion.com/mcp-dolt-database/sse",
-      "enabled": true
-    }
   }
 }

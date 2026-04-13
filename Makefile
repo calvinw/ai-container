@@ -15,7 +15,7 @@ run:
 		--name $(CONTAINER) \
 		-e CLAUDE_CODE_DISABLE_VSCODE_EXTENSION=1 \
 		-e IS_SANDBOX=1 \
--v "$(PWD)":$(WORKSPACE) \
+		-v "$(PWD)":$(WORKSPACE) \
 		-w $(WORKSPACE) \
 		$(IMAGE):$(TAG) \
 		sleep infinity
@@ -29,10 +29,7 @@ shell:
 stop:
 	docker stop $(CONTAINER) && docker rm $(CONTAINER)
 
-# --- Local test workflow ---
-
-build-test:
-	docker build -t ai-container-test .
+up-test: build-test run-test setup shell
 
 run-test:
 	docker run -d \
@@ -44,7 +41,22 @@ run-test:
 		ai-container-test \
 		sleep infinity
 
+# Simulate an end-user repo: clean workspace with only a conf file, no scripts visible
+USER_TEST_DIR = /tmp/test-user-repo
+
+test-user: build-test
+	mkdir -p $(USER_TEST_DIR)/configs
+	@echo "Add entries to $(USER_TEST_DIR)/configs/mcp-servers.conf then re-run make test-user-shell"
+
+test-user-shell:
+	docker run --rm -it \
+		-v "$(USER_TEST_DIR)":/workspace \
+		ai-container-test bash
+
 # --- Image build/publish workflow ---
+
+build-test:
+	docker build -t ai-container-test .
 
 build:
 	docker build -t $(IMAGE):$(TAG) .
@@ -55,4 +67,4 @@ push:
 clean:
 	docker rmi $(IMAGE):$(TAG)
 
-.PHONY: up pull run setup shell stop build-test run-test build push clean
+.PHONY: up pull run setup shell stop up-test run-test test-user test-user-shell build-test build push clean
