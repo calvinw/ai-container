@@ -5,8 +5,7 @@ set -euo pipefail
 # configured in .skillshare/config.yaml. Run setup-skills.sh first if you
 # haven't set up the .skillshare directory yet.
 
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-WORKSPACE_DIR="$(cd -- "$SCRIPT_DIR/.." && pwd)"
+WORKSPACE_DIR="${WORKSPACE_DIR:-$PWD}"
 
 cd "$WORKSPACE_DIR"
 

@@ -4,8 +4,7 @@ set -euo pipefail
 # Uninstalls all synced skills from AI tools, leaving them only in .skillshare/.
 # Run this after testing to clean up. Re-run sync-skills.sh to redeploy.
 
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-WORKSPACE_DIR="$(cd -- "$SCRIPT_DIR/.." && pwd)"
+WORKSPACE_DIR="${WORKSPACE_DIR:-$PWD}"
 
 cd "$WORKSPACE_DIR"
 
