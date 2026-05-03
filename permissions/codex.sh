@@ -1,2 +1,2 @@
 #!/bin/bash
-codex
+codex --sandbox danger-full-access
